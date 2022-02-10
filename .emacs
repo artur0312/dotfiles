@@ -19,6 +19,9 @@
 ;;Indent using spaces
 (setq-default indent-tabs-mode nil)
 
+;;Copy and paste to system clipboard
+(setq x-select-enable-clipboard t)
+
 
 
 ;;Disable line numbers for some modes

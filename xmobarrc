@@ -1,0 +1,37 @@
+Config { font = "xft:Fira Code Retina Nerd Font Complete:pixelsize=12"
+       , additionalFonts = [
+				 "xft:Mononoki Nerd Font:pixelsize=14",
+				 "xft:Font Awesome 5 free:pixelsize=12"]
+       , borderColor = "#646464"
+       , border = BottomB
+       , bgColor = "#2E3440"
+       , fgColor = "#D8DEE9"
+       , alpha = 255
+       , position = Top
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot = "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
+                                          "-L","18","-H","25",
+                                          "--normal","green",
+                                          "--high","red",
+                                          "--low","lightblue"] 36000
+                    , Run Wireless "wlp2s0" ["-t",  "<fn=1>\xf1eb </fn> <ssid>"] 10
+                    , Run Cpu ["-L","3","-H","50",
+                               "--normal","green","--high","red"] 10
+                    , Run Memory ["-t","<fn=1>\xf85a </fn><usedratio>%"] 10
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run StdinReader
+                    , Run Date "<fn=1>\xf133 </fn>  %b %_d %Y %H:%M" "date" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template =  "%StdinReader%|%cpu% |%memory% | %wlp2s0wi% }\
+                    \{ <fc=#ee9a00> %date% </fc> | %uname%"
+       }
