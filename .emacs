@@ -35,8 +35,11 @@
 
 (global-auto-revert-mode)
 
+;;Julialang
+
 ;;Auto pair brackets C++ and java
 (add-hook 'c++-mode-hook 'electric-pair-local-mode)
+(add-hook 'c-mode-hook 'electric-pair-local-mode)
 (add-hook 'java-mode-hook 'electric-pair-local-mode)
 
 ;;java indentation
@@ -47,10 +50,10 @@
 
 ;;Initialize package sources
 (require 'package)
-(setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("melpa-stable" . "https://stable.melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+			 ("melpa-stable" . "http://stable.melpa.org/packages/")
+			 ("org" . "http://orgmode.org/elpa/")
+			 ("elpa" . "http://elpa.gnu.org/packages/")))
 
 ;;Theme settings
 (use-package doom-themes
@@ -73,12 +76,15 @@
 
 (use-package command-log-mode)
 
+(use-package julia-mode)
+
 (use-package counsel
   :bind(("M-x" . counsel-M-x)
 	("C-x b" . counsel-ibuffer)
 	("C-x C-f" . counsel-find-file)
 	:map minibuffer-local-map
 	("C-r" . 'counsel-minibuffer-history)))
+(setq counsel-find-file-ignore-regexp "~")
 
 (use-package ivy
   :diminish
@@ -214,6 +220,19 @@
 (require 'warnings)
 (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
 
+(use-package magit
+  :ensure t)
+
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind
+  (:map projectile-mode-map
+        ("C-c p" . 'projectile-command-map)))
+
+(use-package highlight-doxygen)
+
   
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -221,9 +240,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(custom-safe-themes
+   '("745d03d647c4b118f671c49214420639cb3af7152e81f132478ed1c649d4597d" "47db50ff66e35d3a440485357fb6acb767c100e135ccdf459060407f8baea7b2" "cf922a7a5c514fad79c483048257c5d8f242b21987af0db813d3f0b138dfaf53" "da186cce19b5aed3f6a2316845583dbee76aea9255ea0da857d1c058ff003546" "76ed126dd3c3b653601ec8447f28d8e71a59be07d010cd96c55794c3008df4d7" "e8df30cd7fb42e56a4efc585540a2e63b0c6eeb9f4dc053373e05d774332fc13" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "f7fed1aadf1967523c120c4c82ea48442a51ac65074ba544a5aefc5af490893b" default))
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(org-mode aas cdlatex undo-tree key-chord which-key use-package ivy-rich helpful evil counsel command-log-mode))
+   '(highlight-doxygen org-mode aas cdlatex undo-tree key-chord which-key use-package ivy-rich helpful evil counsel command-log-mode))
  '(tool-bar-mode nil))
   
 (custom-set-faces
@@ -231,4 +252,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 98 :width normal)))))
+ '(default ((t (:family "Hack" :foundry "SRC" :slant normal :weight normal :height 120 :width normal)))))
