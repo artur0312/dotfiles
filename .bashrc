@@ -7,5 +7,7 @@
 
 alias ls='ls --color=auto'
 PS1='[\u:\w]\$ '
+#Java GUI
+export _JAVA_AWT_WM_NONREPARENTING=1 
 
 pfetch
