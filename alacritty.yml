@@ -22,7 +22,7 @@
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-TERM: xterm-256color
+TERM: xterm-color
 
 window:
   # Window dimensions (changes require restart)
@@ -361,7 +361,7 @@ colors:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 1.0
+window_opacity: 1.0
 
 #selection:
   # This string contains all characters that are used as separators for
@@ -423,8 +423,8 @@ background_opacity: 1.0
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
-#  program: /bin/bash
+shell:
+  program: /bin/fish
 #  args:
 #    - --login
 
