@@ -1,4 +1,3 @@
-"Local: ~/.vimrc
 "Basic settings ------------------{{{
 set nocompatible
 set rnu
@@ -32,7 +31,7 @@ filetype plugin indent on
 "}}}
 
 "Leader settings-----------{{{
-let mapleader=","
+let mapleader=" "
 let maplocalleader="\\"
 "}}}
 
